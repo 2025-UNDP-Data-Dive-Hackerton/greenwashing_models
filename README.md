@@ -87,41 +87,7 @@ python scripts/generate_statistics.py
 | 0.5+ | 주의 | 🟡 | 추가 조사 권장 |
 | 0.5 미만 | 정상 | 🟢 | 모니터링 지속 |
 
-## 💻 개발자 통합
 
-### Python에서 직접 사용
-```python
-from scripts.predict_greenwashing import load_models, predict_single_project
-
-models, config = load_models()
-
-project = {
-    'ProjectTitle': 'Green Energy Initiative',
-    'USD_Commitment': 500000,
-    'ClimateMitigation': 0,
-    'ClimateAdaptation': 0,
-    'Environment': 0,
-    'Biodiversity': 0
-}
-
-result = predict_single_project(models, config, project)
-print(f"위험도: {result['risk_ratio']} ({result['risk_level']})")
-```
-
-### 웹 API로 래핑
-```python
-from flask import Flask, request, jsonify
-from scripts.predict_greenwashing import load_models, predict_single_project
-
-app = Flask(__name__)
-models, config = load_models()
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    data = request.json
-    result = predict_single_project(models, config, data)
-    return jsonify(result)
-```
 
 ## 🔧 커스터마이징
 
@@ -151,21 +117,18 @@ elif risk_ratio >= 0.5:  # 주의 임계값
 - **마커 부풀리기 탐지**: AUC 0.9406
 - **처리 속도**: 10만개 프로젝트/분
 
-## 🚀 프로덕션 배포
+## 🚀 아키텍처 권장사항
 
-### Docker 사용
-```dockerfile
-FROM python:3.9-slim
-COPY . /app
-WORKDIR /app
-RUN pip install -r requirements.txt
-CMD ["python", "scripts/predict_greenwashing.py"]
+### React + Elixir 통합 구조
 ```
-
-### 클라우드 배포
-- AWS Lambda, Google Cloud Functions 지원
-- 메모리 요구사항: 최소 1GB
-- 처리 시간: 프로젝트당 ~0.1초
+Frontend (React)
+    ↓ HTTP API 호출
+Backend (Elixir/Phoenix)
+    ↓ Python 스크립트 실행
+ML Service (Python)
+    ↓ 결과 반환
+통계 파일들 (6개 CSV/JSON)
+```
 
 ## 📊 생성되는 통계 파일들
 
@@ -176,12 +139,8 @@ CMD ["python", "scripts/predict_greenwashing.py"]
 - **🔍 pattern_analysis.csv** - 그린워싱 패턴 상세 분석
 - **📄 analysis_report.md** - 종합 분석 리포트 (한국어)
 
-### 💻 **개발자 역할**
-- ✅ **제공받은 통계를 시각화** (차트, 그래프, 지도)
-- ✅ **웹 대시보드 UI 구현** (React, Vue, Angular 등)
-- ✅ **사용자 인터페이스 개발** (검색, 필터링 등)
 
-## 📞 지원 및 문의
+## 📞 요약
 
 - 🔧 **실행 가이드**: `docs/RUN_GUIDE.md` 참고
 - 📊 **통계 분석**: `analysis_report.md`에서 주요 인사이트 확인
