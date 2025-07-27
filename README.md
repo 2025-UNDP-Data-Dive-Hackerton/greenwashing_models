@@ -190,4 +190,4 @@ CMD ["python", "scripts/predict_greenwashing.py"]
 
 ---
 
-**✨ 이 패키지는 바로 사용 가능하도록 설계되었습니다. 추가 설정 없이 `python scripts/predict_greenwashing.py` 명령어로 즉시 시작하세요!** 
+**✨ 이 패키지는 바로 사용 가능하도록 설계되었습니다. 추가 설정 없이 `python scripts/predict_greenwashing.py` 명령어로 즉시 시작 가능** 
