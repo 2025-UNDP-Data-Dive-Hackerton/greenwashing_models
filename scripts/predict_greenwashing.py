@@ -20,14 +20,14 @@ def load_models():
     print("🔄 모델 로딩 중...")
     
     models = {
-        'text_model': joblib.load('../models/text_inconsistency_model.pkl'),
-        'tfidf': joblib.load('../models/tfidf_vectorizer.pkl'),
-        'anomaly_model': joblib.load('../models/investment_anomaly_model.pkl'),
-        'scaler': joblib.load('../models/anomaly_scaler.pkl'),
-        'inflation_model': joblib.load('../models/marker_inflation_model.pkl')
+        'text_model': joblib.load('models/text_inconsistency_model.pkl'),
+        'tfidf': joblib.load('models/tfidf_vectorizer.pkl'),
+        'anomaly_model': joblib.load('models/investment_anomaly_model.pkl'),
+        'scaler': joblib.load('models/anomaly_scaler.pkl'),
+        'inflation_model': joblib.load('models/marker_inflation_model.pkl')
     }
     
-    with open('../models/model_config.json', 'r', encoding='utf-8') as f:
+    with open('models/model_config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
     
     print("✅ 모델 로드 완료!")
@@ -240,9 +240,9 @@ def main():
           f"마커과다={result['flags']['excessive_markers']}")
     
     # 예시 2: 전체 CRS 데이터 처리
-    if os.path.exists('../crs_processed.csv'):
+    if os.path.exists('crs_processed.csv'):
         print(f"\n📊 예시 2: 전체 CRS 데이터 일괄 처리")
-        results_df = predict_csv_file(models, config, '../crs_processed.csv', '../log_commitment.csv')
+        results_df = predict_csv_file(models, config, 'crs_processed.csv', 'log_commitment.csv')
         print("✅ CSV 처리 완료!")
     else:
         print("\n💡 CRS 데이터 전처리 필요:")

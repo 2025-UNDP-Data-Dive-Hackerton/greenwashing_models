@@ -10,7 +10,7 @@ import pandas as pd
 import numpy as np
 import os
 
-def preprocess_crs_data(input_file='../../crs_data.csv', output_file='../crs_processed.csv', sample_size=None):
+def preprocess_crs_data(input_file='../crs_data.csv', output_file='crs_processed.csv', sample_size=None):
     """
     CRS 데이터를 모델 입력 형식으로 전처리
     
@@ -35,13 +35,16 @@ def preprocess_crs_data(input_file='../../crs_data.csv', output_file='../crs_pro
     try:
         # DuckDB로 전체 데이터 한번에 처리 (훨씬 빠름!)
         query = f"""
-        SELECT 
-            ProjectTitle,
-            CAST(USD_Commitment AS DOUBLE) as USD_Commitment,
-            CAST(COALESCE(ClimateMitigation, 0) AS INTEGER) as ClimateMitigation,
-            CAST(COALESCE(ClimateAdaptation, 0) AS INTEGER) as ClimateAdaptation,
-            CAST(COALESCE(Environment, 0) AS INTEGER) as Environment,
-            CAST(COALESCE(Biodiversity, 0) AS INTEGER) as Biodiversity
+                 SELECT 
+             ProjectTitle,
+             COALESCE(ShortDescription, '') as ShortDescription,
+             COALESCE(DonorName, 'Unknown') as DonorName,
+             CAST(USD_Commitment AS DOUBLE) as USD_Commitment,
+             CAST(COALESCE(USD_Disbursement, 0) AS DOUBLE) as USD_Disbursement,
+             CAST(COALESCE(ClimateMitigation, 0) AS INTEGER) as ClimateMitigation,
+             CAST(COALESCE(ClimateAdaptation, 0) AS INTEGER) as ClimateAdaptation,
+             CAST(COALESCE(Environment, 0) AS INTEGER) as Environment,
+             CAST(COALESCE(Biodiversity, 0) AS INTEGER) as Biodiversity
         FROM read_csv_auto('{input_file}', null_padding=true, ignore_errors=true)
         WHERE 
             ProjectTitle IS NOT NULL

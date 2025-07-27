@@ -12,7 +12,7 @@ import os
 from datetime import datetime
 import json
 
-def load_prediction_results(csv_file='../log_commitment.csv'):
+def load_prediction_results(csv_file='log_commitment.csv'):
     """예측 결과 CSV 파일 로드"""
     if not os.path.exists(csv_file):
         raise FileNotFoundError(f"예측 결과 파일을 찾을 수 없습니다: {csv_file}")

@@ -42,10 +42,10 @@
     "marker_reality_gap"
   ],
   "model_version": "1.0.0",
-  "created_date": "2025-07-27T10:39:11.633092",
+  "created_date": "2025-07-27T22:21:01.139540",
   "performance_metrics": {
-    "text_model_auc": 0.9954661005844274,
-    "anomaly_detection_rate": 0.05,
-    "inflation_model_auc": 0.9406028368794326
+    "text_model_auc": 0.9847973526329022,
+    "anomaly_detection_rate": 0.04996134392969541,
+    "inflation_model_auc": 0.3035714285714286
   }
 }
