@@ -1,0 +1,51 @@
+{
+  "environmental_keywords": [
+    "climate",
+    "green",
+    "renewable",
+    "environment",
+    "environmental",
+    "sustainable",
+    "sustainability",
+    "clean",
+    "carbon",
+    "emission",
+    "solar",
+    "wind",
+    "energy efficiency",
+    "biodiversity",
+    "forest",
+    "reforestation",
+    "conservation",
+    "ecosystem",
+    "pollution"
+  ],
+  "anomaly_features": [
+    "log_commitment",
+    "log_disbursement",
+    "climate_score",
+    "marker_investment_ratio",
+    "commitment_zscore",
+    "climate_zscore",
+    "year_normalized",
+    "high_marker_low_investment"
+  ],
+  "inflation_features": [
+    "total_projects",
+    "mitigation_rate",
+    "adaptation_rate",
+    "environment_rate",
+    "biodiversity_rate",
+    "actual_green_investment_pct",
+    "avg_investment",
+    "high_marker_rate",
+    "marker_reality_gap"
+  ],
+  "model_version": "1.0.0",
+  "created_date": "2025-07-27T22:21:01.139540",
+  "performance_metrics": {
+    "text_model_auc": 0.9847973526329022,
+    "anomaly_detection_rate": 0.04996134392969541,
+    "inflation_model_auc": 0.3035714285714286
+  }
+}
